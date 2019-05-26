@@ -1,0 +1,24 @@
+h1{
+	font-size: 40px;
+	color: black;
+	text-align: center;
+}
+.run_init{
+	float: left;
+}
+body{
+	background-image: url("back1.jpg");
+	margin: 10px solid red;
+	width: 100%;
+}
+p{
+	font-size: 30px;
+	color: black;
+	text-align: center;
+}
+@media screen and (max-width: 320px){
+     .run_init {
+     	width: 320px;
+     }
+}
+

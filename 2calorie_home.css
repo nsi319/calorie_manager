@@ -1,0 +1,83 @@
+body {
+	margin: 10px solid red;
+  background-image: url("back1.jpg");
+}
+h1{
+  font-size: 60px;
+  font-family: Impact, Charcoal, sans-serif;
+  color: mediumblue;
+  text-align: center;
+}
+h2 {
+   font-size: 40px;
+   font-family: Impact, Charcoal, sans-serif;
+   text-align: center;
+   color: black;
+}
+h3 {
+	font-size: 40px;
+	color: black;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+h4 {
+   font-size: 40px;
+   font-family: "Lucida Console", Monaco, monospace;
+   text-align: center;
+   color: white;
+
+}
+p{
+	font-size: 30px;
+	text-align: center;
+	color: solid red;
+}
+
+button {
+	font-size: 40px;
+	padding: 20px 30px;
+  color: white;
+  background-color: black;
+  cursor: pointer;
+}
+
+.left{
+    width:50%;
+    float:left;
+    font-size: 20px;
+    color: white;
+    height: 70%
+}
+
+.right{
+    float: right;
+    font-size: 20px;
+    color: white;
+    height: 70%;
+}
+.users {
+  width:970px;
+}
+@media screen and (max-width: 959px) {
+
+   .left {
+    width: 50%;
+   }
+   .right {
+    margin-left: 50%;
+   }
+   .users {
+    width:100%
+   }
+
+}
+@media screen and (max-width: 640px) {
+      h1,h2,h3,h4,.users {
+       width:640px;
+     }
+    .left {
+      width:0;
+    }
+    .right {
+      margin-left:10%;
+    }
+}

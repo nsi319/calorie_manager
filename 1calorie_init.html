@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<h1> <b> INITIALIZATION PAGE</b></h1>
+	<link type="text/css" rel="stylesheet" href= "1calorie_init.css">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title></title>
+</head>
+<body>
+<div id="run_init">
+<button onclick="save_data()">RUN INITIALIZATION</button> <br>
+<p id = "result"></p>
+</div>
+<br>
+<pre>
+<a href= "2calorie_home.html" target="_top"><center>GO TO HOME PAGE</center> </a>
+</pre>
+</body>
+
+<script>
+localStorage.clear();         // to clear exixting ls
+function save_data() {
+localStorage.setItem("Sai_inidata","no");        // create intial values
+localStorage.setItem("Pai_inidata","no");
+localStorage.setItem("entryvalue",1);        // entry value
+document.getElementById("result").innerHTML="INITIALIZATION OF VALUES TO NULL SUCCESSFULL";
+}
+
+
+</script>
+</html>

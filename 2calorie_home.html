@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+	<h1>CALORIE MANAGEMENT SYSTEM</h1>
+	<h2>Welcome to Calorie Management System.</h2>
+	<h4>A place where you can find a Calorie Counter and a Water Intake Tracking System.</h4> 
+	<br>
+	<h3> HOME PAGE: </h3> <br>
+	<h3> Please select a user. <h3> <br>
+	<link type="text/css" rel="stylesheet" href= "2calorie_home.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+</head>
+<body>
+<section class="run">
+<div class ="left">
+<button onclick="save_user('Sai')" font-size>Sai</button>
+</div>
+
+<div class ="right">
+<button onclick="save_user('Pai')">Pai</button>
+</div>
+</section>
+</body>
+
+
+
+
+
+<script>
+function save_user (input) {
+
+if(localStorage.getItem("user_login") != null)
+localStorage.removeItem("user_login");             // remove existing user
+
+localStorage.setItem("user_login",input);
+var val = input + "_inidata";
+
+if(localStorage.getItem(val)=="no")
+   window.open("3calorie_userdata.html","_top");       // if not entered personal data, directed to that page
+
+else if(localStorage.getItem(val)=="yes") 
+     window.open("4calorie_entry.html","_top");          // if entered, directed to management page
+}
+</script>
+</html>

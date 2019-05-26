@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <h1> Calorie Management </h1>
+    <title>Calorie addition</title>
+
+       <link type="text/css" rel="stylesheet" href= "4calorie_entry.css">
+       <meta charset="utf-8" >
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<div class="upward">   
+<h3 id = "date"></h3>
+<h4 id = "greet"></h4>
+
+<ul>           
+<li><h4 id = "intake"></h4></li>
+<li><h4 id = "intake_today"></h4></li>
+<li><h4 id = "water_cons"></h4></li>
+
+<li><u><h5 id = "tobe_cons"></h5></u></li>
+
+<h5 id = "water_alert"></h5>
+
+</div>
+
+</head> 
+<body>
+    <form>
+    <div class= "values">
+    <pre>
+    <b>ENTER THE FOLLOWING DETAILS:</b>
+
+     Description(Food):                           <input type="text" name="food" id="food" value = "meal_intake"> <br>
+     Total Calories (Fat + Carb + Prot) (in kcal):<input type="num" name="cal" id="cal" value = "0" step="0.01"> <br>
+     Water (in litres):                           <input type="number" name="water" id="water" value = "0" step="0.01"> <br>
+                                       Save Details <input type="button" onclick="save_cdata()" value="SAVE"> 
+     </pre>
+   </div>
+    </form>     
+     <p id = "stored"> </p> <br>
+         <a href = "2calorie_home.html" target="_top"><center> BACK </center></a>                
+</body>
+
+
+
+<script>
+    var date = new Date();
+    document.getElementById("date").innerHTML=  "Date and Time: " + date;       //date and time
+    var input = localStorage.getItem("user_login");
+    var value = input + "_intake";                                         // intake is min req amt per day
+    var intake =JSON.parse(localStorage.getItem(value));
+    document.getElementById("intake").innerHTML = "Your Calorie requirement per day is: " + intake + " kcals";
+    var d = date.getDate();
+    var m = date.getMonth() + 1;
+    var y = date.getYear();
+    var h = date.getHours();                           // get hour value of entry
+    value = input + d + "/" + m + "/" + y;
+    value1 = value + "cal";     // cal total                       // user total calories per day
+    value2 = value + "water";   // water total                     // total water per day
+
+        
+    if(localStorage.getItem(value1) == null)
+        localStorage.setItem(value1,"0");             // set intake calories as 0 for that day
+
+    if(localStorage.getItem(value2) == null)
+        localStorage.setItem(value2,"0");             // set intake water quantity as 0 for that day
+   
+    document.getElementById("greet").innerHTML = "Welcome " + input + ". ";
+
+    var intake_today = JSON.parse(localStorage.getItem(value1));
+    document.getElementById("intake_today").innerHTML = "Your Calorie consumption today is: " + intake_today + " kcals.";
+    var tobe1 =  intake_today - intake ;                                                   // how much more to consume
+    if (tobe1>0) {
+         document.getElementById("tobe_cons").innerHTML = "You have consumed more than your daily requirement by " + tobe1 + " kcals .Please take care of your diet."; 
+    }
+    else {
+         var tobe2 = intake - intake_today;
+         document.getElementById("tobe_cons").innerHTML = "You have to consume atleast " + tobe2 + " more kcals to complete your day."; 
+     }
+
+    var water_cons = JSON.parse(localStorage.getItem(value2)); 
+             var sent = "Your Water consumption today is: " + water_cons + " litres.";                 // min 3.7 lts
+    if(water_cons<1)
+           sent = sent + " Your water levels are very low. You need to drink atleast 3.7 litres of water a day."
+    else if (water_cons>=1 && water_cons<2)
+           sent = sent + " Your water levels are moderate. Drink water on a regular basis."
+    else if (water_cons>=2 && water_cons<=3)
+           sent = sent + " Your water levels are quite normal. Do continue your routine."
+    else if (water_cons>3)
+           sent = sent + " Your water levels are perfect. Stay hydrated." 
+
+       document.getElementById("water_cons").innerHTML = sent;
+
+     
+      var water_hour = value2 + "hourly";
+    if(localStorage.getItem(water_hour) == null)
+        localStorage.setItem(water_hour,JSON.stringify(h));     // h hour value of entry
+    
+    function save_cdata() {
+        var cal = parseFloat(document.getElementById("cal").value);          // cals given
+        var water = parseFloat(document.getElementById("water").value);      // amt water given
+        var it = parseFloat(JSON.parse(localStorage.getItem(value1)));
+        it = it + cal;                               // add this calorie to total
+        localStorage.removeItem(value1);             // remove old total cal
+        localStorage.setItem(value1,JSON.stringify(it));  // add new with additional calories
+
+        var wat = parseFloat(JSON.parse(localStorage.getItem(value2)));
+        wat = wat + water;                                   // add this water to total
+        localStorage.removeItem(value2);                     // remove old total water
+        localStorage.setItem(value2,JSON.stringify(wat));    // add new total water
+        var diff = h - parseInt((JSON.parse(localStorage.getItem(water_hour))));
+
+        if(diff>=2) {        // if water interval time >2 , alert given     
+
+            document.getElementById("water_alert").innerHTML = "You have not consumed water for the past " + diff + " hours. Please consume water in regular intervals";
+            alert("You have not consumed water for the past " + diff + " hours. Please consume water in regular intervals");
+
+        }
+        localStorage.removeItem(water_hour);
+        localStorage.setItem(water_hour,JSON.stringify(h));      // updating new water consumption
+
+        document.getElementById("stored").innerHTML= "Data stored successfully. Press BACK to go to home page";
+    }
+</script>
+</html>

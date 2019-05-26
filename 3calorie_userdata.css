@@ -1,0 +1,44 @@
+body {
+	margin: 10px solid red;
+  background-image: url("back1.jpg");
+}
+h1{
+	font-family: "Arial Black", Gadget, sans-serif;
+	font-size: 40px;
+	color: black;
+	text-align: center;
+}
+h2 {
+	font-size: 25px;
+	color: black;
+}
+p{
+	font-family: "Comic Sans MS", cursive, sans-serif;
+	font-size: 20px;
+	color: black;
+
+}
+.values{
+	font-family: "Comic Sans MS", cursive, sans-serif;
+	font-size: 20px;
+	font color: black;
+}
+
+@media screen and (max-width: 969px){
+	.values {
+		width: 100%;
+	}
+	h1,h2,p {
+		width:100%;
+	}
+}
+
+@media screen and (max-width: 430px){
+     .values {
+     	width: 320px;
+     }
+     h1,h2,p {
+     	width: 320px;
+     }
+}
+

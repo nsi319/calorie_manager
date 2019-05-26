@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<h1>WELCOME TO USER PERSONAL DATA ZONE</h1>
+    <h2>Please enter your correct details</h2>
+	<title>personal data zone</title>
+
+	<link type="text/css" rel="stylesheet" href= "3calorie_userdata.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+	<p id="p_name"> </p>
+ <form>   
+  <div class="values">
+  <pre>
+  Age:           <input type="number" name="age" id="uage">
+  Height (cm):   <input type="number" name="height" id="uht">
+  Weight (kg):   <input type="number" name="weight" id="uwt"> <br>
+  Body Activity:   
+                      Sedentary   <input type="checkbox" id="sed">
+                      Moderate    <input type="checkbox" id="mod">
+                      Very Active <input type="checkbox" id="act"> <br>
+
+          Save Details <input type="button" onclick="save_udata()" value="Save"> 
+    </pre>      
+  </div> 
+</form>
+<a href = "2calorie_home.html" target="_top"><center> BACK </center> </a>
+<p id = "stored"> </p>
+</body>
+
+
+
+<script>
+	var input1=localStorage.getItem("user_login");
+	document.getElementById("p_name").innerHTML="Welcome " + input1;
+	
+	function save_udata() {
+
+		var activity_val=1;                            
+		var val1 = document.getElementById("sed").checked;
+		var val2 = document.getElementById("mod").checked;
+		var val3 = document.getElementById("act").checked;
+     	
+		if(val1==true)
+			activity_val=1.2;                         // sed implies constant = 1.2
+		else if(val2==true)
+			activity_val=1.3;                         // mod const = 1.3
+		else if(val3==true)
+			activity_val=1.4;                        // very active const = 1.4
+
+		var input=localStorage.getItem("user_login");             // getting name
+
+		var value = input + "_age";
+		var data1 = document.getElementById("uage").value;            // eg sai_age
+        localStorage.setItem(value,JSON.stringify(data1));
+
+		value = input + "_height";
+		var data2 = document.getElementById("uht").value;             // eg sai_height
+		localStorage.setItem(value,JSON.stringify(data2));
+
+		value = input + "_weight";
+		var data3 = document.getElementById("uwt").value;           // sai_weight
+		localStorage.setItem(value,JSON.stringify(data3));
+
+		
+		value = input + "_intake";
+		var intake = activity_val * (10*data3 + 6.25 *data2 - 5*data1 +5);           
+		             // 10 x (Weight in kg) + 6.25 x (Height in cm) - 5 x age +5. avg req per day calculation
+		localStorage.setItem(value,JSON.stringify(intake));
+		
+		value = input + "_inidata";
+		localStorage.removeItem(value);                     // removing old data
+		localStorage.setItem(value,"yes");                  // setting inidata to yes (yes implying personal data given)
+
+		document.getElementById("stored").innerHTML= "Data stored successfully. Press BACK to go to home page";
+	}
+</script>
+</html>

@@ -1,0 +1,71 @@
+body {
+  margin: 10px solid red;
+  background-image: url("back1.jpg");
+}
+h1{
+	font-family: "Arial Black", Gadget, sans-serif;
+	font-size: 40px;
+	color: black;
+	text-align: center;
+}
+h3 {
+	font-size:20px;
+	color:black;
+	text-align:center;
+}
+h4 {
+	font-size: 20px;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+h5{
+	font-size: 25px;
+	font-family: Impact, Charcoal, sans-serif;
+	color: solid black;
+}
+.upward {
+	width:960px;
+}
+.values{
+	font-family: "Comic Sans MS", cursive, sans-serif;
+	font-size: 25px;
+	font color: black;
+}
+p{
+	font-family: "Comic Sans MS", cursive, sans-serif;
+	font-size: 20px;
+	color: black;
+
+}
+#alert {
+	float:left;
+	width: 100%;
+	font-size: 20px;
+	font-family: Impact, Charcoal, sans-serif;
+	color: solid black;
+}
+#norm {
+	float:left;
+	width: 100%;
+	font-size: 20px;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+@media screen and (max-width: 959px) {
+
+   .values {
+    width:100%;
+   }
+   h1,h3,h4,h5 {
+    width:100%;
+   }
+}
+@media screen and (max-width: 890px) {
+
+   .values {
+    width:890px;
+   }
+   h1,h3,h4,h5 {
+    width:890px;
+   }
+}
+
