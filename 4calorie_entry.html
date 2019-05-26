@@ -71,11 +71,15 @@
     document.getElementById("intake_today").innerHTML = "Your Calorie consumption today is: " + intake_today + " kcals.";
     var tobe1 =  intake_today - intake ;                                                   // how much more to consume
     if (tobe1>0) {
-         document.getElementById("tobe_cons").innerHTML = "You have consumed more than your daily requirement by " + tobe1 + " kcals .Please take care of your diet."; 
+         document.getElementById("tobe_cons").innerHTML = "You have consumed more than your daily requirement by " + tobe1 + " kcals .Please take care of your diet."; document.getElementById("tobe_cons").style.backgroundColor="red";
+
     }
     else {
          var tobe2 = intake - intake_today;
-         document.getElementById("tobe_cons").innerHTML = "You have to consume atleast " + tobe2 + " more kcals to complete your day."; 
+         document.getElementById("tobe_cons").innerHTML = "You have to consume atleast " + tobe2 + " more kcals to complete your day.";
+document.getElementById("tobe_cons").style.backgroundColor=
+"green";
+
      }
 
     var water_cons = JSON.parse(localStorage.getItem(value2)); 
@@ -90,6 +94,9 @@
            sent = sent + " Your water levels are perfect. Stay hydrated." 
 
        document.getElementById("water_cons").innerHTML = sent;
+       document.getElementById("water_cons").style.backgroundColor=
+"blue";
+
 
      
       var water_hour = value2 + "hourly";
@@ -113,6 +120,9 @@
         if(diff>=2) {        // if water interval time >2 , alert given     
 
             document.getElementById("water_alert").innerHTML = "You have not consumed water for the past " + diff + " hours. Please consume water in regular intervals";
+document.getElementById("water_alert").style.backgroundColor=
+"red";
+
             alert("You have not consumed water for the past " + diff + " hours. Please consume water in regular intervals");
 
         }
